@@ -1,11 +1,13 @@
 # specify the node base image with your desired version node:<version>
-FROM node:14
+FROM node:14 as build
 
 WORKDIR /app
 
-COPY ./ ./
+COPY package*.json ./
 
 RUN npm install
+
+COPY ./ ./
 
 CMD ["npm", "start"]
 
